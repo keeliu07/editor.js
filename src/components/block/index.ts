@@ -716,7 +716,7 @@ export default class Block {
    * @returns {HTMLDivElement}
    */
   private compose(): HTMLDivElement {
-    const wrapper = $.make('div', Block.CSS.wrapper,{'key': _.generateId()}) as HTMLDivElement,
+    const wrapper = $.make('div', Block.CSS.wrapper,{'key': _.generateBlockId()}) as HTMLDivElement,
         contentNode = $.make('div', Block.CSS.content),
         pluginsContent = this.toolInstance.render();
 

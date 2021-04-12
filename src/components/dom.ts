@@ -65,8 +65,6 @@ export default class Dom {
     for (const attrName in attributes) {
       if (Object.prototype.hasOwnProperty.call(attributes, attrName)) {
         el[attrName] = attributes[attrName];
-      }else{
-        el[attrName] = attributes[attrName];
       }
     }
 
