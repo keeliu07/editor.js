@@ -83,7 +83,7 @@ export interface EditorConfig {
   /**
    * Fires when Editor is ready to work
    */
-  onReady?(): void;
+  onReady?: (instance?: any) => void;
 
   /**
    * Fires when something changed in DOM
