@@ -247,7 +247,7 @@ export default class Block {
     tunesData,
   }: BlockConstructorOptions) {
     this.id = id;
-    this.name = tool.name;
+    this.name = name;
     this.settings = tool.settings;
     this.config = tool.settings.config || {};
     this.api = api;
@@ -716,7 +716,7 @@ export default class Block {
    * @returns {HTMLDivElement}
    */
   private compose(): HTMLDivElement {
-    const wrapper = $.make('div', Block.CSS.wrapper) as HTMLDivElement,
+    const wrapper = $.make('div', Block.CSS.wrapper,{'key': _.generateBlockId()}) as HTMLDivElement,
         contentNode = $.make('div', Block.CSS.content),
         pluginsContent = this.toolInstance.render();
 
