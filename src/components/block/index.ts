@@ -26,6 +26,16 @@ import ToolsCollection from '../tools/collection';
  */
 interface BlockConstructorOptions {
   /**
+   * Block's id
+   */
+  id: string;
+
+  /**
+   * Tool's name
+   */
+  name: string;
+
+  /**
    * Initial Block data
    */
   data: BlockToolData;
@@ -104,6 +114,11 @@ export default class Block {
       dropTarget: 'ce-block--drop-target',
     };
   }
+
+  /**
+   * Block unique identifier
+   */
+  public id: string;
 
   /**
    * Block Tool`s name
@@ -213,6 +228,8 @@ export default class Block {
 
   /**
    * @param {object} options - block constructor options
+   * @param {string} options.id - Tool's unique id
+   * @param {string} options.name - Tool name that passed on initialization
    * @param {BlockToolData} options.data - Tool's initial data
    * @param {BlockToolConstructable} options.Tool — Tool's class
    * @param {ToolSettings} options.settings - default tool's config
@@ -220,6 +237,8 @@ export default class Block {
    * @param {boolean} options.readOnly - Read-Only flag
    */
   constructor({
+    id,
+    name,
     data,
     tool,
     api,
@@ -227,6 +246,7 @@ export default class Block {
     tunes,
     tunesData,
   }: BlockConstructorOptions) {
+    this.id = id;
     this.name = tool.name;
     this.settings = tool.settings;
     this.config = tool.settings.config || {};
@@ -575,6 +595,7 @@ export default class Block {
         measuringEnd = window.performance.now();
 
         return {
+          id: this.id,
           tool: this.name,
           data: finishedExtraction,
           tunes: tunesData,

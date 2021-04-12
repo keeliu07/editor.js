@@ -9,9 +9,15 @@ import {BlockTuneData} from "../block-tunes/block-tune-data";
  */
 export interface OutputBlockData<Type extends string = string, Data extends object = any> {
   /**
+   * Unique Id of the block
+   */
+  id?: string;
+
+  /**
    * Tool type
    */
   type: Type;
+
   /**
    * Saved Block data
    */

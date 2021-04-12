@@ -222,13 +222,16 @@ export default class BlockManager extends Module {
    */
   public composeBlock({
     tool: name,
+    id = _.generateBlockId(),
     data = {},
     tunes: tunesData = {},
-  }: {tool: string; data?: BlockToolData; tunes?: {[name: string]: BlockTuneData}}): Block {
+  }: {tool: string; id?:string; data?: BlockToolData; tunes?: {[name: string]: BlockTuneData}}): Block {
     const readOnly = this.Editor.ReadOnly.isEnabled;
     const tool = this.Editor.Tools.blockTools.get(name);
     const tunes = this.Editor.Tools.getTunesForTool(tool);
     const block = new Block({
+      id,
+      name,
       data,
       tool,
       api: this.Editor.API,
@@ -257,6 +260,7 @@ export default class BlockManager extends Module {
    * @returns {Block}
    */
   public insert({
+    id = _.generateBlockId(),
     tool = this.config.defaultBlock,
     data = {},
     index,
@@ -264,6 +268,7 @@ export default class BlockManager extends Module {
     replace = false,
     tunes = {},
   }: {
+    id?: string;
     tool?: string;
     data?: BlockToolData;
     index?: number;
@@ -278,6 +283,7 @@ export default class BlockManager extends Module {
     }
 
     const block = this.composeBlock({
+      id,
       tool,
       data,
       tunes,

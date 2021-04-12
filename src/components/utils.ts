@@ -608,6 +608,31 @@ export function getValidUrl(url: string): string {
 }
 
 /**
+ * Creates a nanoid
+ * 
+ * @param t Number to fill array
+ * @returns {string} Id with t characters
+ */
+function nanoid(t = 21): string {
+  let e = "", r = crypto.getRandomValues(new Uint8Array(t));
+  
+  for (; t--; ) {
+    let n = 63 & r[t];
+    e += n < 36 ? n.toString(36) : n < 62 ? (n - 26).toString(36).toUpperCase() : n < 63 ? "_" : "-";
+  }
+  return e;
+}
+
+/**
+ * Create a block id
+ *
+ * @returns {string}
+ */
+export function generateBlockId(): string {
+  return nanoid();
+}
+
+/**
  * Opens new Tab with passed URL
  *
  * @param {string} url - URL address to redirect
