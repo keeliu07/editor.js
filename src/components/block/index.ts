@@ -266,6 +266,7 @@ export default class Block {
     this.composeTunes(tunesData);
 
     this.holder = this.compose();
+    this.holder.setAttribute("key", id);
   }
 
   /**
@@ -716,7 +717,7 @@ export default class Block {
    * @returns {HTMLDivElement}
    */
   private compose(): HTMLDivElement {
-    const wrapper = $.make('div', Block.CSS.wrapper,{'key': _.generateBlockId()}) as HTMLDivElement,
+    const wrapper = $.make('div', Block.CSS.wrapper) as HTMLDivElement,
         contentNode = $.make('div', Block.CSS.content),
         pluginsContent = this.toolInstance.render();
 
